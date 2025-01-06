@@ -8,7 +8,7 @@ utilizar pandas, numpy o scipy.
 
 def pregunta_06():
     """
-    La columna 5 codifica un diccionario donde cada cadena de tres letras
+    La columna 5 codifica un diccionario donde cada cadena de tres claves
     corresponde a una clave y el valor despues del caracter `:` corresponde al
     valor asociado a la clave. Por cada clave, obtenga el valor asociado mas
     pequeño y el valor asociado mas grande computados sobre todo el archivo.
@@ -26,3 +26,29 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    grupos = {}
+    
+    with open('files/input/data.csv', 'r') as file:
+        for line in file:
+            
+            columns = line.strip().split('\t')
+            column = columns[4].split(",")
+            for pareja in column:
+                pareja = pareja.split(":") 
+                clave = pareja[0]
+                valor = int(pareja[1]) 
+            
+                if clave not in grupos:
+                    grupos[clave] = []
+                grupos[clave].append(valor)
+
+
+    resultado = []
+    for clave, valores in grupos.items():
+        maximo = max(valores)
+        minimo = min(valores)
+        resultado.append((clave, minimo, maximo))
+
+    resultado = sorted(resultado, key=lambda x: x[0])
+
+    return resultado
