@@ -16,7 +16,7 @@ def pregunta_12():
 
     """
     grupos = []
-    with open('files\input\data.csv') as file:
+    with open("files/input/data.csv", "r") as file:
         for line in file:
             columns = line.strip().split('\t')
             column = columns[4].split(",")

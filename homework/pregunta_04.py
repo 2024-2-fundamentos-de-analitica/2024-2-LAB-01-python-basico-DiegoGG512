@@ -28,7 +28,7 @@ def pregunta_04():
     """
 
     sequence = []
-    with open('files\input\data.csv') as file:
+    with open("files/input/data.csv", "r") as file:
         for line in file:
             columns = line.strip().split('\t')
             sequence.append((columns[2].split("-")[1], 1))
